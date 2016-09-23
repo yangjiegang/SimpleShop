@@ -1,0 +1,25 @@
+<include file="./Theme/top.html" />
+	<div>
+		<form action="{:U('User/dologin')}" role="form">
+			<fieldset>	
+			<legend><strong>用户登录：</strong></legend>
+			
+			<div class="form_group">
+			<label for="">用户名</label>
+				<input type="text" class="form_control" name="uname" placeholder="请输入用户名">
+			</div>
+			<br>
+			
+			<div class="form_group">
+			<label for="">密码</label>
+				<input type="password" class="form_control" name="password" placeholder="请输入密码">
+			</div>
+			<br>
+			<div class="form_group">
+				<input type="submit" class="form_control" value="提交">
+			</div>
+		</form>
+		</fieldset>
+	</div>
+</body>
+</html>

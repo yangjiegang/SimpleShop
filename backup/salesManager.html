@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>salesManager</title>
+	<style type="text/css">
+		.onSales{width: 100%; height: 500px;}
+		.booking>li{width: 80%; height: 200px; background-color: green; margin: 20px;}
+	</style>
+   <!--css & js-->
+   <script src="js/jquery-1.9.1.js"></script>
+   <script src="bootstrap/js/bootstrap.min.js"></script>
+   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/tplEngine.js"></script>
+    <link href="jumbotron-narrow.css" tppabs="http://v3.bootcss.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="carousel.css" tppabs="http://v3.bootcss.com/examples/carousel/carousel.css" rel="stylesheet">
+   <!--css & js-->
+<script type="text/javascript">
+$(function(){
+/*    var data = {
+        skills: ["js", "html", "css"],
+        showSkills: true
+    }*/
+    $.ajax({
+    	type: "GET",
+    	url:"/PEMarket/controler.php?action=sales",
+    	success:function(callback){
+    		//var data = $.parseJSON(callback);
+    		console.log(callback);
+    		//console.log(data);
+    	}
+/*    	error:function(e){
+    		alert(e);
+    	}*/
+    });
+    //doTpl(data);
+});
+</script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Project name</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Nav header</li>
+            <li><a href="#">Separated link</a></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+	<div class="onSales">
+		<ul class="list-items booking">
+<!-- 			<li><a href="">A</a></li>
+<li><a href="">B</a></li>
+<li><a href="">C</a></li>
+<li><a href="">D</a></li>
+<li><a href="">E</a></li> -->
+<%if(this.showSkills) {%><%for(var index in this.skills) {%><li><a href="#"><%this.skills[index]%></a></li><%}%><%} else {%><li>none</li><%}%>
+		</ul>
+	</div>
+</body>
+</html>

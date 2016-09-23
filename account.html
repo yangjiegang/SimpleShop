@@ -1,0 +1,429 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="css/form.css" rel="stylesheet" type="text/css" media="all" />
+    
+    <script src="js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/megamenu.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="js/tplEngine.js"></script>
+    <script src="js/common.js"></script>
+    <style type="text/css">
+	    .container {
+	        min-height: 900px;
+	    }
+	    
+	    .commentSpan {
+	        float: right;
+	    }
+	    
+	    img.media-object {
+	        margin: 5px 5px;
+	        width: 100px;
+	        height: 100px;
+	    }
+	    
+	    .media-body>p {
+	        font: 16px black YaHei;
+	    }
+    </style>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var src = {
+            "orders": [],
+            "profile": {},
+            "comments": []
+        };
+        $.ajax({
+            type: "POST",
+            url: "ctrl/controler.php",
+            data: {
+                "action": 'account'
+            },
+            success: function(callback) {
+                var obj = $.parseJSON(callback);
+                var orders = obj.orders;
+                for (var i = 0; i < orders.length; i++) {
+                    $("input[name='oid']").eq(i).val(orders[i]["id"]);
+                    src.orders.push({
+                        "oid": orders[i]["id"],
+                        "ctime": orders[i]["ctime"],
+                        "gname": orders[i]["gname"],
+                        "price": orders[i]["price"],
+                        "count": orders[i]["count"],
+                        "gdesc": orders[i]["gdesc"],
+                        "gimg": orders[i]["gimg"]
+                    });
+                }
+                if (src.orders.length > 0) {
+                    src.showOrders = true
+                };
+                var profile = obj.profiles[0];
+                src.profile = {
+                    "uImg": profile["uImg"],
+                    "nickname": profile["nick"],
+                    "gender": profile["gender"] == "0" ? "male" : "female",
+                    "balance": profile["balance"],
+                    "level": profile["level"],
+                    "motto": profile["motto"]
+                };
+                if (!$.isEmptyObject(src.profile)) {
+                    src.showProfile = true
+                };
+                var comments = obj.comments;
+                for (var i = comments.length - 1; i >= 0; i--) {
+                    src.comments.push({
+                        "oid": comments[i]["oid"],
+                        "content": comments[i]["content"],
+                        "degree": comments[i]["degree"],
+                        "ctime": comments[i]["ctime"]
+                    });
+                }
+                if (src.comments.length > 0) {
+                    src.showComments = true
+                };
+                console.info(src);
+                doTpl(src);
+            },
+            error: function(e) {
+                console.log("e:", e);
+            },
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <div class="header-top">
+        <div class="wrap">
+<!--             <div class="header-top-left">
+    <div class="box">
+        <select tabindex="4" class="dropdown">
+            <option value="" class="label" value="">Language :</option>
+            <option value="1">English</option>
+            <option value="2">French</option>
+            <option value="3">German</option>
+        </select>
+    </div>
+    <div class="box1">
+        <select tabindex="4" class="dropdown">
+            <option value="" class="label" value="">Currency :</option>
+            <option value="1">$ Dollar</option>
+            <option value="2">€ Euro</option>
+        </select>
+    </div>
+    <div class="clear"></div> 
+            </div>-->
+            <div class="cssmenu">
+                <ul>
+                    <li class="active"><a href="account.html">Account</a></li> |
+                    <li><a href="javascript:void(0);">Wishlist</a></li> |
+                    <li><a href="checkout.html">Checkout</a></li> |
+                    <li><a href="login.html" id="unm">Log In</a></li> |
+                    <li><a href="register.html">Sign Up</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="header-bottom">
+        <div class="wrap">
+            <div class="header-bottom-left">
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.png" alt="" /></a>
+                </div>
+                <div class="menu">
+                    <ul class="megamenu skyblue">
+                        <li class="active grid"><a href="index.html">Home</a></li>
+                        <li><a class="color4" href="#">women</a>
+                            <div class="megapanel">
+                                <div class="row">
+                                    <div class="col1">
+                                        <div class="h_nav">
+                                            <h4>Contact Lenses</h4>
+                                            <ul>
+                                                <li><a href="womens.html">Daily-wear soft lenses</a></li>
+                                                <li><a href="womens.html">Extended-wear</a></li>
+                                                <li><a href="womens.html">Lorem ipsum </a></li>
+                                                <li><a href="womens.html">Planned replacement</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col1">
+                                        <div class="h_nav">
+                                            <h4>Sun Glasses</h4>
+                                            <ul>
+                                                <li><a href="womens.html">Heart-Shaped</a></li>
+                                                <li><a href="womens.html">Square-Shaped</a></li>
+                                                <li><a href="womens.html">Round-Shaped</a></li>
+                                                <li><a href="womens.html">Oval-Shaped</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col1">
+                                        <div class="h_nav">
+                                            <h4>Eye Glasses</h4>
+                                            <ul>
+                                                <li><a href="womens.html">Anti Reflective</a></li>
+                                                <li><a href="womens.html">Aspheric</a></li>
+                                                <li><a href="womens.html">Bifocal</a></li>
+                                                <li><a href="womens.html">Hi-index</a></li>
+                                                <li><a href="womens.html">Progressive</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a class="color5" href="#">Men</a>
+                            <div class="megapanel">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Contact Lenses</h4>
+                                        <ul>
+                                            <li><a href="mens.html">Daily-wear soft lenses</a></li>
+                                            <li><a href="mens.html">Extended-wear</a></li>
+                                            <li><a href="mens.html">Lorem ipsum </a></li>
+                                            <li><a href="mens.html">Planned replacement</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Sun Glasses</h4>
+                                        <ul>
+                                            <li><a href="mens.html">Heart-Shaped</a></li>
+                                            <li><a href="mens.html">Square-Shaped</a></li>
+                                            <li><a href="mens.html">Round-Shaped</a></li>
+                                            <li><a href="mens.html">Oval-Shaped</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Eye Glasses</h4>
+                                        <ul>
+                                            <li><a href="mens.html">Anti Reflective</a></li>
+                                            <li><a href="mens.html">Aspheric</a></li>
+                                            <li><a href="mens.html">Bifocal</a></li>
+                                            <li><a href="mens.html">Hi-index</a></li>
+                                            <li><a href="mens.html">Progressive</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a class="color6" href="other.html">Other</a></li>
+                        <li><a class="color7" href="other.html">Purchase</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="header-bottom-right">
+                <div class="search">
+                    <input type="text" name="search" class="textbox" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                    <input type="submit" value="Subscribe" id="submit" name="submit">
+                    <div id="response"> </div>
+                </div>
+                <div class="tag-list">
+                    <ul class="icon1 sub-icon1 profile_img">
+                        <li>
+                            <a class="active-icon c1" href="#"> </a>
+                            <ul class="sub-icon1 list">
+                                <li>
+                                    <h3>sed diam nonummy</h3>
+                                    <a href=""></a>
+                                </li>
+                                <li>
+                                    <p>Lorem ipsum dolor sit amet, consectetuer <a href="">adipiscing elit, sed diam</a></p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="icon1 sub-icon1 profile_img">
+                        <li>
+                            <a class="active-icon c2" href="#"> </a>
+                            <ul class="sub-icon1 list">
+                                <li>
+                                    <h3>No Products</h3>
+                                    <a href=""></a>
+                                </li>
+                                <li>
+                                    <p>Lorem ipsum dolor sit amet, consectetuer <a href="">adipiscing elit, sed diam</a></p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="last">
+                        <li><a href="#">Cart(0)</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="container">
+        <div class="row">
+            <!--<div class="col-sm-3 sidebar">    
+					<h3>My Profile <span class="label label-info">check</span></h3>
+					<ul class="nav nav-sidebar"  style="font:18px YaHei">
+						<%if (this.showOrderS) {%>
+						<li class="active"><a href="javascript:void(0);">nickname:<%this.profile.nickname%><span class="sr-only">(current)</span></a></li>
+						<li><a href="javascript:void(0);">  gender:<%this.profile.gender%></a></li>
+						<li><a href="javascript:void(0);">  level:<%this.profile.level%></a></li>
+						<li><a href="javascript:void(0);">balance:<%this.profile.balance%></a></li>
+						<li><a href="javascript:void(0);">motto:<%this.profile.motto%></a></li>
+						<%}%>
+					</ul>
+			</div>-->
+            <div class="col-sm-3 sidebar" style="font:1.5em YaHei">
+                <div class="page-header">
+                    <h3>My Account <span class="label label-info">choose<span class="caret"></span></span></h3>
+                </div>
+                <ul class="nav nav-sidebar">
+                    <li><a href="#tabProfiles" data-toggle="tab" class="active"><span class="glyphicon glyphicon-star"></span>My Profiles</a></li>
+                    <li><a href="#tabOrders" data-toggle="tab"><span class="glyphicon glyphicon-star"></span>My Orders</a></li>
+                    <li><a href="#tabComments" data-toggle="tab"><span class="glyphicon glyphicon-star"></span>My Comments</a></li>
+                    <li><a href="javascript:void(0);"><span class="glyphicon glyphicon-star"></span>About</a></li>
+                    <li><a href="javascript:void(0);"><span class="glyphicon glyphicon-star"></span>Other</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-8 col-sm-offset-1">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tabProfiles">
+                        <div class="page-header">
+                            <h2>My Profile <span class="label label-info">check</span></h2>
+                        </div>
+                        <%if (this.showProfile) {%>
+                            <ul class="list-group">
+                                <li class="list-group-item"><a href="uImg.html"><img src="<%this.profile.uImg%>" alt="uImg">click to change uImg</a></li>
+                                <li class="list-group-item"><a href="javascript:void(0);">nickname:<%this.profile.nickname%></a></li>
+                                <li class="list-group-item"><a href="javascript:void(0);">gender:<%this.profile.gender%></a></li>
+                                <li class="list-group-item"><a href="javascript:void(0);">level:<%this.profile.level%></a></li>
+                                <li class="list-group-item"><a href="javascript:void(0);">balance:<%this.profile.balance%></a></li>
+                                <li class="list-group-item"><a href="javascript:void(0);">motto:<%this.profile.motto%></a></li>
+                            </ul>
+                            <%}%>
+                    </div>
+                    <div id="tabOrders" class="tab-pane fade">
+                        <div class="page-header">
+                            <h2>My Orders <span class="label label-warning">New</span></h2>
+                        </div>
+                        <ul class="media-list">
+                            <%if(this.showOrders) {%>
+                                <%for(var index in this.orders) {%>
+                                    <li class="media">
+                                        <div class="media-left">
+                                            <a href="javascript:void(0);">
+									<img class="media-object" src="<%this.orders[index].gimg%>" alt="img">
+									</a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">OrderID: <%this.orders[index].oid%>
+									<span class="commentSpan"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal"> CommentNow </button></span>
+									</h4>
+                                            <p>price: $
+                                                <%this.orders[index].price%>
+                                            </p>
+                                            <p>count:
+                                                <%this.orders[index].count%>
+                                            </p>
+                                            <p>ctime:
+                                                <%this.orders[index].ctime%>
+                                            </p>
+                                        </div>
+                                        <div class="comment">
+                                            <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModal" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title" id="myModalLabel">Comment</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="ctrl/controler.php" method="POST">
+                                                                <input type="hidden" name="action" value="comment">
+                                                                <input type="hidden" name="oid" value="">
+                                                                <div class="form-group">
+                                                                    <label for="stars" class="control-label">Stars:</label>
+                                                                    <input type="text" name="stars" class="form-control" id="stars">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="content" class="control-label">Content:</label>
+                                                                    <textarea name="content" class="form-control" id="content"></textarea>
+                                                                </div>
+                                                                <input type="submit" class="btn btn-info" value="submit">
+                                                            </form>
+                                                        </div>
+                                                        <!--<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+												<button type="submit" class="btn btn-primary">Submit</button>
+											</div>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <%}%>
+                                        <%} else {%>
+                                            <li>No ordes!</li>
+                                            <%}%>
+                        </ul>
+                    </div>
+                    <div id="tabComments" class="tab-pane fade">
+                        <div class="page-header">
+                            <h2>My Comments</h2>
+                        </div>
+                        <%if (this.showComments){%>
+                            <ul class="list-group">
+                                <%for (var i in this.comments){%>
+                                    <li class="list-group-item">
+                                        <p>
+                                            <span class="col-sm-4">oid:<%this.comments[i].oid%></span>
+                                            <span class="col-sm-4">stars:<%this.comments[i].degree%></span>
+                                            <span class="col-sm-4">ctime:<%this.comments[i].ctime%></span>
+                                        </p>
+                                        <textarea cols="100" rows="3" disabled="disabled">content:
+                                            <%this.comments[i].content%>
+                                        </textarea>
+                                    </li>
+                                    <%}%>
+                            </ul>
+                            <%}%>
+                    </div>
+                </div>
+                <!-- tab-content -->
+            </div>
+        </div>
+        <!--row-->
+    </div>
+    <!--container-->
+    <div class="footer">
+        <div class="footer-bottom">
+            <div class="wrap">
+                <div class="copy">
+                    <p>Copyright &copy; 2014.Company name All rights reserved.</p>
+                </div>
+                <div class="f-list2">
+                    <ul>
+                        <li class="active"><a href="about.html">About Us</a></li> |
+                        <li><a href="delivery.html">Delivery & Returns</a></li> |
+                        <li><a href="delivery.html">Terms & Conditions</a></li> |
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

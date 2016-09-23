@@ -1,0 +1,17 @@
+.container{background-color: green;}
+.row{background-color: blue;}
+.col-lg-10{background-color: yellow; }
+div.main>ul{width: auto; height: 220px;}
+div.main>ul>li:hover div.more{z-index: 2; display: block;}
+.goods{background-color: red; width:100%; height: 220px; z-index: 1;}
+div.more{display: none; position: absolute; width:80%; height: 220px; margin: -210px 0 auto; background-color: white;}
+#myUl{position:fixed;margin-top:100px;font:20px "微软雅黑";color:white;z-index:10;}
+.rightsidebar>ul.list-group{width: 36px; height: 320px; position: fixed; margin:100px 0 auto; z-index: 1;}
+.rightsidebar>ul>li.list-group-item{float: left; list-style: none; margin: 0 0 auto; z-index: 3; padding: 1px;}
+.rightsidebar>ul.list-unstyled{width: 36px; position: fixed;  margin:100px auto;}
+.rightsidebar>ul.list-unstyled>li{opacity: 0; z-index: 2;}
+.module{width: 200px; height: 200px; border-radius: 1px; font-size: 20px; position: absolute; z-index: 5;}
+.md-0{margin:200px -220px auto; background-color: blue; color: red;}
+.md-1{margin:250px -220px auto; background-color: green; color: red;}
+.md-2{margin:300px -220px auto; background-color: grey; color: red;}
+.md-3{margin:300px -220px auto; background-color: black; color: red;}

@@ -1,0 +1,22 @@
+.logo{
+    width: 180px;
+    height: 50px;
+    margin: 10px 20px;
+    line-height: 50px;
+    text-align: center;
+    font:  bold 30px white YaHei;
+    float: left;
+    color: #fff;
+}
+.logout{
+    padding: 30px 15px 0 0;
+    float: right;
+    color: #fff;
+}
+a{
+    color: #fff;
+    text-decoration: none;
+}
+a::hover{
+    text-decoration: underline;
+}
