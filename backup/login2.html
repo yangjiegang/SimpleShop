@@ -1,0 +1,13 @@
+<html>
+<meta charset="utf-8">
+<head></head>
+<body>
+<form action="controler.php?action=login" method="POST">
+ 用户名：<input name="username" type="text" /><br />
+ 密  码：<input name="password" type="password" /><br />
+ <img id="checkpic" onclick="this.src='code_c.php?'+Math.random();" src='code_c.php' />
+ <input name="code" type="code" /><br />
+ <input name="submit" type="submit" value="登录" />
+</form>
+</body>
+</html>

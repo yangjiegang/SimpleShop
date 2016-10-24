@@ -1,0 +1,5 @@
+ÄÐ×°£ºbootstrap carousel figture tpl + div.fixed_top_bar + 10*2*£¨div.rol-4£© + 50px:rightbar + 
+
+div.rol-4 = div.img + div.proifle=span.number+span.name+span.timecount
+
+nextPage: bigpic + div(types<a href>) + (div.rol-3)*4 + 

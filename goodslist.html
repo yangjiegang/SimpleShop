@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>goodslist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="css/form.css" rel="stylesheet" type="text/css" media="all" />
+
+    <script src="js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/megamenu.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="js/tplEngine.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+    $(function() {
+        var search = getvl("search");
+        $.ajax({
+            url: "ctrl/controler.php",
+            type: "POST",
+            data: {
+                "action": "searchGoods",
+                "search": search,
+            },
+            success: function(data, res, status) {
+                var arr = JSON.parse(data);
+                var src = {
+                	"goodsList":arr,
+                };
+                if (arr.length>0) {
+                	src.showGoods=true;
+                }
+                doTpl(src);
+            },
+        });
+        $(".seller").bind("click", function() {
+            var seller = this.childNodes[1].innerText;
+            var buyer = $("#unm").text();
+            self.location.href = "http://localhost:3000//ttalk_eshop.html?buyer=" + buyer + "&seller=" + seller;
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <div class="header-top">
+        <div class="wrap">
+            <!-- 			  <div class="header-top-left">
+	   <div class="box">
+   				      <select tabindex="4" class="dropdown">
+							<option value="" class="label" value="">Language :</option>
+							<option value="1">English</option>
+							<option value="2">French</option>
+							<option value="3">German</option>
+					  </select>
+   				    </div>
+   				    <div class="box1">
+   				        <select tabindex="4" class="dropdown">
+							<option value="" class="label" value="">Currency :</option>
+							<option value="1">$ Dollar</option>
+							<option value="2">€ Euro</option>
+						</select>
+   				    </div>
+   				    <div class="clear"></div>
+   			 </div> -->
+            <div class="cssmenu">
+                <ul>
+                    <li class="active"><a href="account.html">Account</a></li> |
+                    <li><a href="javascript:void(0);">Wishlist</a></li> |
+                    <li><a href="checkout.html">Checkout</a></li> |
+                    <li><a href="login.html" id="unm">Log In</a></li> |
+                    <li><a href="register.html">Sign Up</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="header-bottom">
+        <div class="wrap">
+            <div class="header-bottom-left">
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.png" alt="" /></a>
+                </div>
+                <div class="menu">
+                    <ul class="megamenu skyblue">
+                        <li class="active grid"><a href="index.html">Home</a></li>
+                        <li><a class="color4" href="#">women</a>
+                            <div class="megapanel">
+                                <div class="row">
+                                    <div class="col1">
+                                        <div class="h_nav">
+                                            <h4>Contact Lenses</h4>
+                                            <ul>
+                                                <li><a href="womens.html">Daily-wear soft lenses</a></li>
+                                                <li><a href="womens.html">Extended-wear</a></li>
+                                                <li><a href="womens.html">Lorem ipsum </a></li>
+                                                <li><a href="womens.html">Planned replacement</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col1">
+                                        <div class="h_nav">
+                                            <h4>Sun Glasses</h4>
+                                            <ul>
+                                                <li><a href="womens.html">Heart-Shaped</a></li>
+                                                <li><a href="womens.html">Square-Shaped</a></li>
+                                                <li><a href="womens.html">Round-Shaped</a></li>
+                                                <li><a href="womens.html">Oval-Shaped</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col1">
+                                        <div class="h_nav">
+                                            <h4>Eye Glasses</h4>
+                                            <ul>
+                                                <li><a href="womens.html">Anti Reflective</a></li>
+                                                <li><a href="womens.html">Aspheric</a></li>
+                                                <li><a href="womens.html">Bifocal</a></li>
+                                                <li><a href="womens.html">Hi-index</a></li>
+                                                <li><a href="womens.html">Progressive</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a class="color5" href="#">Men</a>
+                            <div class="megapanel">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Contact Lenses</h4>
+                                        <ul>
+                                            <li><a href="mens.html">Daily-wear soft lenses</a></li>
+                                            <li><a href="mens.html">Extended-wear</a></li>
+                                            <li><a href="mens.html">Lorem ipsum </a></li>
+                                            <li><a href="mens.html">Planned replacement</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Sun Glasses</h4>
+                                        <ul>
+                                            <li><a href="mens.html">Heart-Shaped</a></li>
+                                            <li><a href="mens.html">Square-Shaped</a></li>
+                                            <li><a href="mens.html">Round-Shaped</a></li>
+                                            <li><a href="mens.html">Oval-Shaped</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Eye Glasses</h4>
+                                        <ul>
+                                            <li><a href="mens.html">Anti Reflective</a></li>
+                                            <li><a href="mens.html">Aspheric</a></li>
+                                            <li><a href="mens.html">Bifocal</a></li>
+                                            <li><a href="mens.html">Hi-index</a></li>
+                                            <li><a href="mens.html">Progressive</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a class="color6" href="other.html">Other</a></li>
+                        <li><a class="color7" href="other.html">Purchase</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="header-bottom-right">
+                <div class="search">
+                    <form>
+                        <input type="text" name="search" class="textbox" value="Search" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Search';}">
+                        <input type="button" value="Subscribe" id="submit" name="submit">
+                    </form>
+                    <div id="response"> </div>
+                </div>
+                <div class="tag-list">
+                    <ul class="icon1 sub-icon1 profile_img">
+                        <li>
+                            <a class="active-icon c1" href="#"> </a>
+                            <ul class="sub-icon1 list">
+                                <li>
+                                    <h3>sed diam nonummy</h3>
+                                    <a href=""></a>
+                                </li>
+                                <li>
+                                    <p>Lorem ipsum dolor sit amet, consectetuer <a href="">adipiscing elit, sed diam</a></p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="icon1 sub-icon1 profile_img">
+                        <li>
+                            <a class="active-icon c2" href="#"> </a>
+                            <ul class="sub-icon1 list">
+                                <li>
+                                    <h3>No Products</h3>
+                                    <a href=""></a>
+                                </li>
+                                <li>
+                                    <p>Lorem ipsum dolor sit amet, consectetuer <a href="">adipiscing elit, sed diam</a></p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="last">
+                        <li><a href="#">Cart(0)</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+            <%if (this.showGoods){%>
+                <%for(index in this.goodsList){%>
+                    <div class="media">
+                        <div class="media-left">
+                    		<a href="#"><img src="<%this.goodsList[index].gimg%>" style="width: 150px; height: 150px;" class="media-object" alt="gImg"></a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Gname:<%this.goodsList[index].gname%></h4>
+                            <ul class="list-group">
+	                            <li class="list-group-item">
+	                            	<span>Price:<%this.goodsList[index].price%></span>&nbsp;&nbsp;&nbsp;<span>Stock:<%this.goodsList[index].stock%></span>
+	                            </li>
+	                            <li class="list-group-item">
+	                            	<a href="javascript:void(0);" class="seller">Contect seller:<span><%this.goodsList[index].vendor%></span></a>
+	                            </li>
+	                            <li class="list-group-item">
+	                                Gdesc:<%this.goodsList[index].gdesc%>
+	                            </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <br>
+                    <%}%>
+                <%}%>
+            </div>
+            <div class="col-sm-3 col-sm-offset-1">
+                Advertisements here...
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-bottom">
+            <div class="wrap">
+                <div class="copy">
+                    <p>Copyright &copy; 2014.Company name All rights reserved.</p>
+                </div>
+                <div class="f-list2">
+                    <ul>
+                        <li class="active"><a href="about.html">About Us</a></li> |
+                        <li><a href="delivery.html">Delivery & Returns</a></li> |
+                        <li><a href="delivery.html">Terms & Conditions</a></li> |
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <div style="display:none"></div>
+</body>
+
+</html>

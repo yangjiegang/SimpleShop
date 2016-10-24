@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>TTalk | whois</title>
+    <link rel="stylesheet" type="text/css" href="chat.css">
+</head>
+
+<body>
+    <div id="main">
+        <div id="usrPanel">
+            <div id="sysUsr">
+                <label>UserList</label>
+            </div>
+            <div id="usrBox"></div>
+        </div>
+        <div id="msgPanel">
+            <!--        <div class="msgBox"></div>
+    <div class="msgBox" style="display:none"></div>
+    <div class="msgBox" style="display:none"></div> -->
+        </div>
+        <div id="inputState">
+            <!--            <select name="" id="dest">
+    <option value=""></option>
+</select> -->
+            <p>
+                <span>destination</span>
+                <label id="dest">dest</label>
+                <span>colorPicker</span>
+                <input name="colorPick" type="color" />
+                <span>image</span>
+                <input type="button" name="imgBtn" class="imgBtn" value="image" />
+            </p>
+        </div>
+        <div id="inputBox">
+            <p>
+                <span>
+            <textarea id="msgInput" cols="30" rows="10"></textarea>
+            <!-- <div id="msgInput"></div> -->
+        </span>
+                <span>
+            <button id="sndBtn">Send</button>
+            <button id="logBtn">Login</button>
+            <input id="sendImage" type="file" value="image"/>
+        </span>
+            </p>
+        </div>
+    </div>
+    <script type="text/javascript" src="jquery-1.9.1.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="common.js"></script>
+    <script type="text/javascript" src="TtalkClient.js"></script>
+</body>
+
+</html>

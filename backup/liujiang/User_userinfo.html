@@ -1,0 +1,28 @@
+<include file="./Theme/top.html" />
+	<div>
+		<form action="{:U('User/updateuserinfo')}" method="post">
+			<fieldset>
+				<legend><strong>个人资料：</strong></legend>
+				<p>用户名<span>{$userinfo.uname}</span></p>
+				<p>昵称<input type="text" name="nick" value="{$userinfo.nick}"></p>
+				<p>性别<span>男<input type="radio" name="gender" value="1">女<input type="radio" name="gender" value="2">保密<input type="radio" name="gender" value="3"></span></p>
+				<p>年龄<input type="text" name="age" value="{$userinfo.age}"></p>
+				<p>等级<span>{$userinfo.degree}</span></p>
+				<p>积分<span>{$userinfo.chit}</span></p>
+				<p>邮箱<input type="text" name="email" value="{$userinfo.email}"></p>
+				<p>创建时间<span>{$userinfo.ctime|date='Y-m-d H:i:s',###}</span></p>
+				<p>修改时间{$userinfo.mtime}</p>
+				<p>签名<input type="text" name="motto" value="{$userinfo.motto}"></p>
+				<input type="hidden" name="userid" value="{$userinfo.id}">
+				<p><input type="submit" name="sub" value="保存"></p>
+			</fieldset>
+		</form>
+	</div>
+	<script>
+		$(function(){
+			var gender = $("input[name='gender']");
+			console.log(gender);
+		})	
+	</script>
+</body>
+</html>

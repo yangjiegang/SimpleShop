@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+   <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+   <link rel="stylesheet" href="__PUBLIC__/css/header.css">
+   <script src="__PUBLIC__/js/jquery.min.js"></script>
+   <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+   <!--css & js-->
+   <script src="../js/jquery-1.9.1.js" tppabs="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+   <script src="../bootstrap/js/bootstrap.min.js" tppabs="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+   <link href="../bootstrap/css/bootstrap.min.css" tppabs="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+   <!--css & js-->
+	<title>主页</title>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-offset-1"><h1>无尽商城</h1></div>
+         <div>
+            <p><a href='{:U("User/login")}'>登陆</a><a href="{:U('User/loginout')}">退出</a><a href='{:U("User/register")}'>注册</a>  ||  你好<a href="{:U('User/userinfo')}">{$_SESSION['uname']}</a></p>
+         </div>
+		</div>
+      <div>
+         <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header col-rx-6">
+               <a class="navbar-brand" href="#">首页</a>
+            </div>
+            <div>
+               <ul class="nav navbar-nav">
+                  <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        商品 
+                        <b class="caret"></b>
+                     </a>
+                     <ul class="dropdown-menu">
+                        <li><a href="#">jmeter</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">EJB</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Jasper Report</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">分离的链接</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">另一个分离的链接</a></li>
+                     </ul>
+                  </li>
+                  <li><a href="#">会员</a></li>
+                  <li><a href="#">SVN</a></li>
+               </ul>
+            </div>
+         </nav>
+      </div>
+	</div>

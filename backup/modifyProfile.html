@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>用户信息自定义</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--     <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script> -->
+   <script src="js/jquery-1.9.1.js" tppabs="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="jquery.imgareaselect-0.9.4/scripts/jquery.imgareaselect.js"></script>
+    <link rel="stylesheet" type="text/css" href="jquery.imgareaselect-0.9.4/css/imgareaselect-default.css">
+   <!--css & js-->
+   <script src="bootstrap/js/bootstrap.min.js" tppabs="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+   <link href="bootstrap/css/bootstrap.min.css" tppabs="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="jumbotron-narrow.css" tppabs="http://v3.bootcss.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="carousel.css" tppabs="http://v3.bootcss.com/examples/carousel/carousel.css" rel="stylesheet">
+    <script type="text/javascript" src="js/modifyProfile.js"></script>
+   <!--css & js-->
+<style type="text/css">
+div#wrap{width: 500px; height: 500px; overflow: hidden; float: left;}
+div.imgArea{width: 400px; height: 400px; overflow: hidden; border: 1px solid black;}
+/*         div#cut { float: right;} */
+/*         div.preview{ width: auto !important; width: 100px; min-width: 100px; height: 100px; overflow: hidden; border: 1px solid black;} */
+div.preview{ width: 200px; max-width: 200px; height: 200px; overflow: hidden; border: 1px solid black;}
+div.profile{margin: 20px 20px 20px 20px;}
+iframe{display: none;}
+</style>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Project name</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Nav header</li>
+            <li><a href="#">Separated link</a></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="wrap">
+    <div class="imgArea">
+        <img id="imgBack" class="pic" src="" alt="img">
+    </div>
+    <input id="fileToUpload" type="file" size="20" name="fileToUpload" class="input">
+    <button id="buttonUpload">Upload!</button>
+</div>
+<div id="cut">
+    <div class="preview">
+        <img src="" alt="" class="cutImg">
+    </div>
+    <button id="getCut">Cut!</button>
+</div>
+
+<include file="./Theme/top.html" />
+    <div class="profile">
+        <form action="{:U('User/updateuserinfo')}" method="post">
+            <fieldset>
+                <legend><strong>个人资料：</strong></legend>
+                <p>用户名<span>{$userinfo.uname}</span></p>
+                <p>昵称<input type="text" name="nick" value="{$userinfo.nick}"></p>
+                <p>性别<span>男<input type="radio" name="gender" value="1">女<input type="radio" name="gender" value="2">保密<input type="radio" name="gender" value="3"></span></p>
+                <p>年龄<input type="text" name="age" value="{$userinfo.age}"></p>
+                <p>等级<span>{$userinfo.degree}</span></p>
+                <p>积分<span>{$userinfo.chit}</span></p>
+                <p>邮箱<input type="text" name="email" value="{$userinfo.email}"></p>
+                <p>创建时间<span>{$userinfo.ctime|date='Y-m-d H:i:s',###}</span></p>
+                <p>修改时间{$userinfo.mtime}</p>
+                <p>签名<input type="text" name="motto" value="{$userinfo.motto}"></p>
+                <input type="hidden" name="userid" value="{$userinfo.id}">
+                <p><input type="submit" name="sub" value="保存"></p>
+            </fieldset>
+        </form>
+    </div>
+
+    <script>
+        $(function(){
+            var gender = $("input[name='gender']");
+            console.log(gender);
+        })  
+    </script>
+</body>
+</html>
